@@ -2,6 +2,7 @@ package com.galaxy.spring.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import javax.transaction.Transactional;
 
@@ -45,16 +46,19 @@ public class UserControllerTest extends AbstractControllerTest {
 
 		/* Create dummy user object. */
 		List<UserVO> userList = new ArrayList<UserVO>();
-		for (int counter = 1; counter <= numberOfObjectsRequired; counter++) {
-			UserVO user = new UserVO();
-			user.setFirstName("Sharon" + counter);
-			user.setLastName("Shelly");
-			user.setEmail("sharon.shelly@somecompany.com");
-			userList.add(user);
-		}
+		IntStream.range(1, numberOfObjectsRequired).forEach(value -> userList.add(createMockUser(value)));
+		
 		return userList;
 	}
 
+	private UserVO createMockUser(int index) {
+		UserVO user = new UserVO();
+		user.setFirstName("Sharon" + index);
+		user.setLastName("Shelly");
+		user.setEmail("sharon.shelly@somecompany.com");
+		return user;
+	}
+	
 	/**
 	 * Test for GetAll
 	 * 

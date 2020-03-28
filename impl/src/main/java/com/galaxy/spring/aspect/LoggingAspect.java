@@ -10,11 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StopWatch;
 
+import lombok.extern.log4j.Log4j2;
+
 @Aspect
 @Configuration
+@Log4j2
 public class LoggingAspect {
-
-	private static Logger LOGGER = LoggerFactory.getLogger(LoggingAspect.class);
 
 	/**
 	 * Aspect to log controller time.
@@ -23,12 +24,12 @@ public class LoggingAspect {
 	 */
 	@Around("execution(* com.galaxy.spring.*.*.*(..))")
 	public Object aroundMethod(ProceedingJoinPoint joinPoint) throws Throwable {
-		LOGGER.info("Method {} with args {}", joinPoint, Arrays.toString(joinPoint.getArgs()));
+		log.info("Method {} with args {}", joinPoint, Arrays.toString(joinPoint.getArgs()));
 		StopWatch stopWatch = new StopWatch();
 		stopWatch.start();
 		Object returnedValue = joinPoint.proceed(joinPoint.getArgs());
 		stopWatch.stop();
-		LOGGER.info("Method {} returned {} within {} ms", joinPoint, returnedValue, stopWatch.getTotalTimeMillis());
+		log.info("Method {} returned {} within {} ms", joinPoint, returnedValue, stopWatch.getTotalTimeMillis());
 		return returnedValue;
 	}
 }
