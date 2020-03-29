@@ -5,6 +5,9 @@ Features
 * Simple User POJOs.
 * REST APIs.
 * Mockito Tests.
+* 500 User Data.
+* API Versioning v1.
+* HTTPS support (self-signed), with HTTP to HTTPS redirect.
 
 ## Release History
 

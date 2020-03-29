@@ -15,7 +15,7 @@ import com.galaxy.spring.service.IService;
 import com.galaxy.spring.model.UserVO;
 
 @RestController
-@RequestMapping(path = RestConstants.URL_USERS_BASE)
+@RequestMapping(path = "v1/" + RestConstants.URL_USERS_BASE)
 public class UserController implements IController<UserVO> {
 
 	@Autowired
