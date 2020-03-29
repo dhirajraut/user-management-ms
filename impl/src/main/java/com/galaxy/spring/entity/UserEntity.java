@@ -27,12 +27,39 @@ public class UserEntity {
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column (nullable = false, name = "firstname")
+	@Column (nullable = false, name = "first_name")
 	private String firstName;
 	
-	@Column (nullable = true, name = "lastname")
+	@Column (nullable = true, name = "last_name")
 	private String lastName;
 	
+	@Column (nullable = true, name = "company_name")
+	private String companyName;
+	
+	@Column (nullable = true)
+	private String address;
+	
+	@Column (nullable = true)
+	private String city;
+	
+	@Column (nullable = true)
+	private String county;
+	
+	@Column (nullable = true)
+	private String state;
+	
+	@Column (nullable = true)
+	private int zip;
+	
+	@Column (nullable = true)
+	private String phone1;
+	
+	@Column (nullable = true)
+	private String phone2;
+
 	@Column (nullable = false, unique = true)
 	private String email;
+
+	@Column (nullable = false)
+	private String web;
 }
