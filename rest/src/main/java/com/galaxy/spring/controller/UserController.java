@@ -21,6 +21,12 @@ public class UserController implements IController<UserVO> {
 	@Autowired
 	IService<UserVO> userService;
 
+	@RequestMapping(method = RequestMethod.GET, path = RestConstants.URL_USERS_BYID)
+	@Override
+	public UserVO findById(/* Variable in URL path */ @PathVariable Long id) {
+		return userService.findById(id);
+	}
+
 	@RequestMapping(method = RequestMethod.GET)
 	@Override
 	public Iterable<UserVO> findAll() {
@@ -39,21 +45,36 @@ public class UserController implements IController<UserVO> {
 	// @RequestMapping(method = RequestMethod.POST)
 	// @ResponseStatus(HttpStatus.CREATED)
 	// @Override
-	// @TODO
+	// @TODO How to add list of new objects?
 	public Iterable<UserVO> saveAll(Iterable<UserVO> userVOList) {
 		return userService.saveAll(userVOList);
 	}
 
-	@RequestMapping(method = RequestMethod.DELETE, path = RestConstants.URL_USERS_FINDBYID)
+	@RequestMapping(method = RequestMethod.PUT, path = RestConstants.URL_USERS_BYID)
+	@ResponseStatus(HttpStatus.OK)
+	@Override
+	public Iterable<UserVO> update(/* Variable in URL Path */ @PathVariable Long id, UserVO userVO) {
+		userVO.setId(id);
+		List<UserVO> userVOList = new ArrayList<UserVO>();
+		userVOList.add(userVO);
+		return userService.saveAll(userVOList);
+	}
+
+	// @TODO How to patch the objects?
+	@RequestMapping(method = RequestMethod.PATCH, path = RestConstants.URL_USERS_BYID)
+	@ResponseStatus(HttpStatus.OK)
+	public Iterable<UserVO> partialUpdate(/* Variable in URL Path */ @PathVariable Long id, UserVO userVO) {
+		userVO.setId(id);
+		List<UserVO> userVOList = new ArrayList<UserVO>();
+		userVOList.add(userVO);
+		return userService.saveAll(userVOList);
+	}
+
+	@RequestMapping(method = RequestMethod.DELETE, path = RestConstants.URL_USERS_BYID)
 	@Override
 	public void deleteById(/* Variable in URL path */ @PathVariable Long id) {
 		userService.deleteById(id);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, path = RestConstants.URL_USERS_FINDBYID)
-	@Override
-	public UserVO findById(/* Variable in URL path */ @PathVariable Long id) {
-		return userService.findById(id);
-	}
 
 }

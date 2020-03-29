@@ -33,6 +33,15 @@ public interface IController<T> {
 	 */
 	public Iterable<T> saveAll(Iterable<T> objectList);
 
+	
+	/**
+	 * Updates an object
+	 * @param id
+	 * @param object
+	 * @return
+	 */
+	public Iterable<T> update(Long id, T object);
+	
 	/**
 	 * Deletes an object.
 	 * 
