@@ -5,13 +5,15 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.galaxy.spring.entity.UserEntity;
 import com.galaxy.spring.exception.EntityNotFoundException;
 import com.galaxy.spring.exception.IntegrityViolationException;
 import com.galaxy.spring.jpa.IUserRepository;
 import com.galaxy.spring.model.UserVO;
+import com.galaxy.spring.entity.UserEntity;
 import com.google.common.reflect.TypeToken;
 
 @Service
@@ -24,7 +26,8 @@ public class UserService implements IService<UserVO> {
 
 	@Override
 	public Iterable<UserVO> findAll() {
-		List<UserEntity> userEntityList = repository.findAll();
+//		List<UserEntity> userEntityList = repository.findAll(Sort.by(Direction.ASC, "id", "firstName"));
+		List<com.galaxy.spring.entity.UserEntity> userEntityList = repository.findAll(Sort.by(Direction.ASC, "firstName"));
 		List<UserVO> userVOList = modelMapper.map(userEntityList, new TypeToken<List<UserVO>>() {
 		}.getType());
 		return userVOList;

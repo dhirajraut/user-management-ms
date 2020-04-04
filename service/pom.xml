@@ -12,4 +12,13 @@
 	<name>${project.artifactId}</name>
 	<description>${project.artifactId}</description>
 	<packaging>jar</packaging>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.galaxy.spring</groupId>
+				<artifactId>user-management-ms-model</artifactId>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>

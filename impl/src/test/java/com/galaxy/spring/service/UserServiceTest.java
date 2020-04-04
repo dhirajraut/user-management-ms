@@ -57,7 +57,7 @@ public class UserServiceTest extends AbstractServiceTest {
 
 	@Test
 	public void testFindNonExistingUser() throws EntityNotFoundException {
-		long nonExistingUserIdToBeFound = 10;
+		long nonExistingUserIdToBeFound = 1000;
 		expectedException.expect(EntityNotFoundException.class);
 		expectedException.expectMessage("Couldn't find entity with id: " + nonExistingUserIdToBeFound);
 
@@ -84,6 +84,7 @@ public class UserServiceTest extends AbstractServiceTest {
 		user.setFirstName("Fn");
 		user.setLastName("Ln");
 		user.setEmail("fn.ln@something.com");
+		user.setWeb("something.com");
 		List<UserVO> userVOList = new ArrayList<UserVO>();
 		userVOList.add(user);
 
