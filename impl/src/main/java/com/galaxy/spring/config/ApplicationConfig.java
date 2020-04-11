@@ -1,4 +1,4 @@
-package com.galaxy.spring;
+package com.galaxy.spring.config;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
